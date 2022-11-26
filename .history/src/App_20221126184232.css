@@ -45,11 +45,11 @@
 
 div#startGame_button2 {
   border: 1px solid #ccc;
+  /* width: 150px; */
   display: inline-block;
   padding: 2px 20px 6px;
   border-radius: 5px;
   margin: 15px 0 0 0;
-  cursor: pointer;
 }
 
 body {
@@ -82,7 +82,7 @@ body {
   background: transparent;
   color: #fff;
   border: 1px solid rgb(109, 101, 101);
-  padding: 0.4rem 0.8rem;
+  padding: 5px 10px;
   font-size: .8rem;
   cursor: pointer;
   border-radius:5px;
@@ -203,7 +203,7 @@ body {
   -ms-transform: rotate(-35deg);
 }
 #keypadWrapper {
-  /* border-left: 1px solid rgb(109, 101, 101); */
+  border-left: 1px solid rgb(109, 101, 101);
   flex: 0 50%;
 }
 .letter_box {

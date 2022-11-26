@@ -1,0 +1,36 @@
+//import React from 'react';
+//import ReactDOM from 'react-dom';
+
+
+import React from 'react';
+import $ from 'jquery';
+
+const scripts = () => {
+    return (
+        <div>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            { 
+            <script>
+                $(document).ready(function(){
+                    let win_height = 0;
+                    win_height = $(document).height();
+                    let h_height = $("#header").outerHeight();
+                    let s1_height = $("#section_1").outerHeight();
+                    let s2_height = win_height - (h_height + s1_height);
+                    $('.section_2_wrapper').height(s2_height);
+                    $(window).resize(function(){
+                        win_height = $(document).height();
+                        let h_height = $("#header").outerHeight();
+                        let s1_height = $("#section_1").outerHeight();
+                        let s2_height = win_height - (h_height + s1_height);
+                        $('.section_2_wrapper').height(s2_height);
+                    });
+                    $(window).resize();
+                });
+            </script>
+}
+        </div>
+    );
+}
+
+export default scripts;

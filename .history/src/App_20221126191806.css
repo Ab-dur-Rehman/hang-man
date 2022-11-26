@@ -203,7 +203,7 @@ body {
   -ms-transform: rotate(-35deg);
 }
 #keypadWrapper {
-  /* border-left: 1px solid rgb(109, 101, 101); */
+  border-left: 1px solid rgb(109, 101, 101);
   flex: 0 50%;
 }
 .letter_box {

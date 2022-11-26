@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-//import $ from 'jquery';
 
-import './scripts/scripts';
+//import scripts from './scripts/scripts';
 
 //Components:
 
