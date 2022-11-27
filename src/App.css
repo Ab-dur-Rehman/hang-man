@@ -259,10 +259,11 @@ p#hint {
 }
 ul#gameWord {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 0;
+  flex-direction: row;
 }
 .letter_box span {
   opacity: 0;
