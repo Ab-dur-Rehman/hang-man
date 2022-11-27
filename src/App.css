@@ -74,12 +74,21 @@ body {
 }
 #section_1 {
   text-align:center;
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
   border-bottom: 1px solid rgb(109, 101, 101);
   width: 100%;
 }
+.hints {
+  position: relative;
+}
+p#hint {
+  padding: 1rem 0 0 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
 .startGame_wrapper{
-  padding: 2rem;
+  padding: 2rem 2rem 55px 2rem;
 }
 #startGame_button {
   background: transparent;
@@ -253,6 +262,7 @@ ul#gameWord {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  padding: 0;
 }
 .letter_box span {
   opacity: 0;
