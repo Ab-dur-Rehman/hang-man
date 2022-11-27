@@ -106,7 +106,7 @@ body {
   flex: 0 50%;
 }
 .hm_wrapper {
-  padding-top: 6rem;
+  /* padding-top: 6rem; */
 }
 .hm_stand {
   position: relative;
