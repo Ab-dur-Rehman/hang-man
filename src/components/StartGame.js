@@ -74,6 +74,15 @@ const StartGame = () => {
         resetWord.innerHTML = '';
         let showKeypad = document.getElementById("keypad");
         showKeypad.style.display = "block";
+        //let keyPad = document.getElementsByClassName("alphaButtons");
+        //console.log(keyPad);
+        const keyPad = Array.from(
+            document.getElementsByClassName('alphaButtons')
+        );
+        keyPad.forEach(box => {
+            box.style.backgroundColor = 'rgb(56, 58, 58)';
+            box.removeAttribute('disabled');
+        });
         let hideGameMessage = document.getElementById("reStart");
         hideGameMessage.style.display = "none";
     }
@@ -91,6 +100,13 @@ const StartGame = () => {
         count : 0,
         matchWord (el) {
             let selected_letter = (el.target.value);
+            //this.setAttribute('disabled', '');
+            //el.target.setAttribute('disabled', '');
+            console.log(selected_letter);
+            let selectedElement = (el.target);
+            selectedElement.setAttribute('disabled', '');
+            selectedElement.style.backgroundColor = "black";
+            console.log(selectedElement);
             var gLetters = document.getElementById("gameWord").getElementsByTagName("span");
             let ind_letters = [];
             for (let i = 0; i < gLetters.length; i++) {
