@@ -79,16 +79,16 @@ body {
   width: 100%;
 }
 .hints {
-  position: relative;
+  /* position: relative; */
 }
 p#hint {
   padding: 1rem 0 0 0;
-  position: absolute;
+  /* position: absolute;
   left: 0;
-  right: 0;
+  right: 0; */
 }
-.startGame_wrapper{
-  padding: 2rem 2rem 55px 2rem;
+.startGame_wrapper {
+  padding: 2rem 2rem 1.5rem 2rem;
 }
 #startGame_button {
   background: transparent;
@@ -232,7 +232,7 @@ p#hint {
   border: 1px solid rgb(109, 101, 101);
   padding: 0.4rem .6rem;
   font-family: 'Baloo Bhai 2', cursive;
-  margin: 0 .5rem;
+  margin: 0.5rem;
   border-radius: 5px;
   list-style: none;
   line-height: 1;
