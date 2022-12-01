@@ -14,9 +14,9 @@ const StartGame = () => {
             //word = data;
             let strWord = data[0].word;
             strWord = strWord.toLowerCase();
-            console.log(strWord.toLowerCase());
+            //console.log(strWord.toLowerCase());
             let wordDefinition = data[0].definition;
-            console.log(wordDefinition);
+            //console.log(wordDefinition);
             $('#hint').text(`Definition: ${wordDefinition}`);
             //gameHint(strWord);
             resetGame();
@@ -53,9 +53,9 @@ const StartGame = () => {
 
     const setGameWord = (word) => {
         let wordArray = word.split('');
-        console.log(wordArray);
+        //console.log(wordArray);
         let word_length = wordArray.length;
-        console.log(word_length);
+        //console.log(word_length);
         let gameWord = document.getElementById("gameWord");
         let gameButton = document.getElementById("startGame_button");
         //gameWord.innerHTML = '';
@@ -132,11 +132,11 @@ const StartGame = () => {
             let selected_letter = (el.target.value);
             //this.setAttribute('disabled', '');
             //el.target.setAttribute('disabled', '');
-            console.log(selected_letter);
+            //console.log(selected_letter);
             let selectedElement = (el.target);
             selectedElement.setAttribute('disabled', '');
             selectedElement.style.backgroundColor = "black";
-            console.log(selectedElement);
+            //console.log(selectedElement);
             var gLetters = document.getElementById("gameWord").getElementsByTagName("span");
             let ind_letters = [];
             for (let i = 0; i < gLetters.length; i++) {
@@ -166,8 +166,8 @@ const StartGame = () => {
                     }
                 );
                 if (this.count === ind_letters.length) {
-                    console.log(ind_letters.length);
-                    console.log(this.count);
+                    //console.log(ind_letters.length);
+                    //console.log(this.count);
                     let hideKeypad = document.getElementById("keypad");
                     hideKeypad.style.display = "none";
                     let gameRestart = document.getElementById("reStart");
@@ -175,8 +175,8 @@ const StartGame = () => {
                     document.getElementById("gameMessage").innerHTML = '<p>Congratulations You win</p>';
                 }
             } else {
-                console.log(this.letterPool.length);
-                console.log(this.letterPool.indexOf(selected_letter));
+                //console.log(this.letterPool.length);
+                //console.log(this.letterPool.indexOf(selected_letter));
                 if ((this.letterPool.indexOf(selected_letter) === -1) && (this.letterPool.length < 6)) {
                     this.letterPool.push(selected_letter);
                     let hm_body = document.getElementsByClassName("hm_body")[0];
@@ -199,7 +199,7 @@ const StartGame = () => {
                     } else if(hm_l_leg.style.display === "none"){
                         hm_l_leg.style.display = "block";
                     }
-                    console.log(this.letterPool);
+                    //console.log(this.letterPool);
                 }
                 else {
                     let hm_r_leg = document.getElementsByClassName("hm_r_leg")[0];
@@ -221,7 +221,7 @@ const StartGame = () => {
                     });
                 }
             }
-            console.log(letter_index);
+            //console.log(letter_index);
         },
     }
 
