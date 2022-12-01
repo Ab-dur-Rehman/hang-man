@@ -3,16 +3,22 @@ import $ from 'jquery';
 
 const StartGame = () => {
 
+    //let wordDefinition = 0;
     const gameFunction = () => {
-
-        let word = 0;
         //let url = 'https://random-word-api.herokuapp.com/word?length=5&lang=en'; // will return one random word.
-        let url = 'https://random-word-api.herokuapp.com/word?lang=en'; // will return one random word.
+        //let url = 'https://random-word-api.herokuapp.com/word?lang=en'; // will return one random word.
+        let url = 'https://random-words-api.vercel.app/word';
+
         $.getJSON(url, randomWord);
         function randomWord(data) {
-            word = data;
-            let strWord = word[0];
-            gameHint(strWord);
+            //word = data;
+            let strWord = data[0].word;
+            strWord = strWord.toLowerCase();
+            console.log(strWord.toLowerCase());
+            let wordDefinition = data[0].definition;
+            console.log(wordDefinition);
+            $('#hint').text(`Definition: ${wordDefinition}`);
+            //gameHint(strWord);
             resetGame();
             setGameWord(strWord);
             hideHangman();
@@ -22,24 +28,28 @@ const StartGame = () => {
         }
     }
 
-    const gameHint = (word) => {
-        let url = 'https://api.dictionaryapi.dev/api/v2/entries/en/'+word;
+    // const gameHint = (strWord) => {
+    //     let url = 'https://api.dictionaryapi.dev/api/v2/entries/en/'+strWord;
         
-        $.getJSON( url, function(data) {
-            console.log( "success" );
-            var definition = data[0].meanings[0].definitions[0].definition;
-            if (definition) {
-                $('#hint').text(`Definition: ${definition}`);
-            } else {
-                $('#hint').text(`Sorry! No definition 
-                found.`);
-            }
-        })
-        .fail(function() {
-            $('#hint').text(`Sorry! No definition 
-                found.`);
-        })
-    }
+    //     $.getJSON( url, function(data) {
+    //         console.log( "success" );
+    //         var definition = data[0].meanings[0].definitions[0].definition;
+    //         if (definition) {
+    //             $('#hint').text(`Definition: ${definition}`);
+    //         } else {
+    //             $('#hint').text(`Sorry! No definition 
+    //             found.`);
+    //         }
+    //     })
+    //     .fail(function() {
+    //         $('#hint').text(`Sorry! No definition 
+    //             found.`);
+    //     })
+    // }
+    //onsole.log(wordDefinition);
+    //const gameHint = (wordDefinition) => {
+    //    $('#hint').text(`Definition: ${wordDefinition}`);
+    //}
 
     const setGameWord = (word) => {
         let wordArray = word.split('');
