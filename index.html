@@ -21,9 +21,29 @@
           <h1 id="app-title">Hangman</h1>
           <p>Guess the word before the drawing is complete.</p>
         </div>
-        <button class="primary-action" type="button" data-action="new-game">
-          New Game
-        </button>
+        <div class="header-actions">
+          <div class="theme-toggle" aria-label="Theme preference">
+            <button
+              class="theme-option"
+              type="button"
+              data-theme-option="light"
+              aria-pressed="true"
+            >
+              Light
+            </button>
+            <button
+              class="theme-option"
+              type="button"
+              data-theme-option="dark"
+              aria-pressed="false"
+            >
+              Dark
+            </button>
+          </div>
+          <button class="primary-action" type="button" data-action="new-game">
+            New Game
+          </button>
+        </div>
       </header>
 
       <section class="game-board" aria-label="Hangman game">

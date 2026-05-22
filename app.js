@@ -44,10 +44,14 @@ const elements = {
   parts: Array.from(document.querySelectorAll(".part")),
   remaining: document.querySelector("#remaining"),
   status: document.querySelector("#status"),
+  themeButtons: Array.from(document.querySelectorAll("[data-theme-option]")),
   word: document.querySelector("#word")
 };
 
 let state = createInitialState();
+let currentTheme = getPreferredTheme();
+
+applyTheme(currentTheme);
 
 function createInitialState() {
   return {
@@ -183,7 +187,57 @@ function renderText() {
   }
 }
 
+function getPreferredTheme() {
+  const storedTheme = readStoredTheme();
+
+  if (storedTheme === "light" || storedTheme === "dark") {
+    return storedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+function readStoredTheme() {
+  try {
+    return localStorage.getItem("hangman-theme");
+  } catch {
+    return null;
+  }
+}
+
+function storeTheme(theme) {
+  try {
+    localStorage.setItem("hangman-theme", theme);
+  } catch {
+    return;
+  }
+}
+
+function applyTheme(theme) {
+  currentTheme = theme;
+  document.documentElement.dataset.theme = theme;
+  document
+    .querySelector("meta[name='theme-color']")
+    .setAttribute("content", theme === "dark" ? "#111827" : "#f7f2e8");
+
+  elements.themeButtons.forEach((button) => {
+    const isActive = button.dataset.themeOption === theme;
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
 elements.newGame.addEventListener("click", startGame);
+elements.themeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const theme = button.dataset.themeOption;
+
+    storeTheme(theme);
+    applyTheme(theme);
+  });
+});
+
 document.addEventListener("keydown", (event) => {
   const letter = event.key.toLowerCase();
 
