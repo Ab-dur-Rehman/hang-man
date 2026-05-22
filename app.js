@@ -40,19 +40,14 @@ const elements = {
   hint: document.querySelector("#hint"),
   keyboard: document.querySelector("#keyboard"),
   misses: document.querySelector("#misses"),
-  metaThemeColor: document.querySelector("meta[name='theme-color']"),
   newGame: document.querySelector("[data-action='new-game']"),
   parts: Array.from(document.querySelectorAll(".part")),
   remaining: document.querySelector("#remaining"),
   status: document.querySelector("#status"),
-  themeButtons: Array.from(document.querySelectorAll("[data-theme-option]")),
   word: document.querySelector("#word")
 };
 
 let state = createInitialState();
-let currentTheme = getPreferredTheme();
-
-applyTheme(currentTheme);
 
 function createInitialState() {
   return {
@@ -188,62 +183,7 @@ function renderText() {
   }
 }
 
-function getPreferredTheme() {
-  const storedTheme = readStoredTheme();
-
-  if (storedTheme === "light" || storedTheme === "dark") {
-    return storedTheme;
-  }
-
-  return window.matchMedia?.("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-}
-
-function readStoredTheme() {
-  try {
-    return localStorage.getItem("hangman-theme");
-  } catch {
-    return null;
-  }
-}
-
-function storeTheme(theme) {
-  try {
-    localStorage.setItem("hangman-theme", theme);
-  } catch {
-    return;
-  }
-}
-
-function applyTheme(theme) {
-  currentTheme = theme;
-  document.documentElement.dataset.theme = theme;
-  elements.metaThemeColor?.setAttribute(
-    "content",
-    theme === "dark" ? "#0d111b" : "#f5f7fb"
-  );
-
-  elements.themeButtons.forEach((button) => {
-    const isActive = button.dataset.themeOption === theme;
-    button.setAttribute("aria-pressed", String(isActive));
-  });
-}
-
 elements.newGame.addEventListener("click", startGame);
-elements.themeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const theme = button.dataset.themeOption;
-
-    if (theme !== "light" && theme !== "dark") {
-      return;
-    }
-
-    storeTheme(theme);
-    applyTheme(theme);
-  });
-});
-
 document.addEventListener("keydown", (event) => {
   const letter = event.key.toLowerCase();
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,22 +8,6 @@
       name="description"
       content="A responsive Hangman word game with hints, keyboard play, and accessible controls."
     />
-    <script>
-      (() => {
-        try {
-          const saved = localStorage.getItem("hangman-theme");
-          const theme =
-            saved === "light" || saved === "dark"
-              ? saved
-              : window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
-          document.documentElement.dataset.theme = theme;
-        } catch {
-          document.documentElement.dataset.theme = "dark";
-        }
-      })();
-    </script>
     <link rel="icon" href="./favicon.ico" />
     <link rel="apple-touch-icon" href="./logo192.png" />
     <link rel="manifest" href="./manifest.json" />
@@ -35,47 +19,13 @@
       <section class="game-console" aria-label="Hangman game">
         <header class="console-header">
           <div class="circuit-line" aria-hidden="true"></div>
-          <p class="brand-mark">H</p>
-          <p class="eyebrow">Word Game</p>
           <h1 id="app-title">Hangman</h1>
         </header>
 
         <section class="command-row" aria-label="Game controls">
-          <div class="theme-module">
-            <span>Light</span>
-            <div class="theme-switch" aria-label="Theme preference">
-              <button
-                class="theme-option"
-                type="button"
-                data-theme-option="light"
-                aria-pressed="false"
-              >
-                Light
-              </button>
-              <button
-                class="theme-option"
-                type="button"
-                data-theme-option="dark"
-                aria-pressed="true"
-              >
-                Dark
-              </button>
-            </div>
-            <span>Dark</span>
-          </div>
-
           <button class="primary-action" type="button" data-action="new-game">
-            <span>New</span>
-            <span>Game</span>
+            New Game
           </button>
-
-          <div class="theme-module mirror">
-            <span>Light</span>
-            <div class="theme-switch compact" aria-hidden="true">
-              <span class="toggle-track"></span>
-            </div>
-            <span>Dark</span>
-          </div>
         </section>
 
         <section class="readout-panel">
