@@ -1,1 +1,66 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/hang-man/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/hang-man/logo192.png"/><link rel="manifest" href="/hang-man/manifest.json"/><title>React App</title><script defer="defer" src="/hang-man/static/js/main.08c5adba.js"></script><link href="/hang-man/static/css/main.4291e2f0.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#151515" />
+    <meta
+      name="description"
+      content="A responsive Hangman word game with hints, keyboard play, and accessible controls."
+    />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./logo192.png" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="stylesheet" href="./app.css" />
+    <title>Hangman</title>
+  </head>
+  <body>
+    <main class="app" aria-labelledby="app-title">
+      <header class="app-header">
+        <div>
+          <h1 id="app-title">Hangman</h1>
+          <p>Guess the word before the drawing is complete.</p>
+        </div>
+        <button class="primary-action" type="button" data-action="new-game">
+          New Game
+        </button>
+      </header>
+
+      <section class="game-board" aria-label="Hangman game">
+        <div class="word-panel">
+          <p class="eyebrow">Hint</p>
+          <p class="hint" id="hint">Start a new game to reveal a clue.</p>
+          <ul class="word" id="word" aria-label="Current word"></ul>
+          <p class="status" id="status" role="status" aria-live="polite">
+            Ready when you are.
+          </p>
+        </div>
+
+        <div class="play-area">
+          <figure class="gallows" aria-label="Hangman drawing">
+            <div class="stand-base"></div>
+            <div class="stand-post"></div>
+            <div class="stand-top"></div>
+            <div class="rope part" data-part="0"></div>
+            <div class="head part" data-part="1"></div>
+            <div class="body part" data-part="2"></div>
+            <div class="arm arm-left part" data-part="3"></div>
+            <div class="arm arm-right part" data-part="4"></div>
+            <div class="leg leg-left part" data-part="5"></div>
+            <div class="leg leg-right part" data-part="6"></div>
+          </figure>
+
+          <section class="controls" aria-label="Letter choices">
+            <div class="score-row">
+              <span id="misses">Misses: 0 / 7</span>
+              <span id="remaining">26 letters left</span>
+            </div>
+            <div class="keyboard" id="keyboard"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
