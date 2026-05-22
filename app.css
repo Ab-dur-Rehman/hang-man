@@ -232,9 +232,12 @@ h1 {
 }
 
 .stage-panel {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  align-items: center;
   min-height: 0;
   margin: 0 8px;
-  padding: 10px 10px 8px;
+  padding: 8px 10px 8px;
   overflow: hidden;
   background:
     linear-gradient(var(--line) 1px, transparent 1px),
@@ -254,9 +257,9 @@ h1 {
 .gallows {
   position: relative;
   width: min(400px, 86%);
-  height: min(33vh, 250px);
-  margin: -8px auto 2px;
-  transform: scale(0.66);
+  height: clamp(300px, 40vh, 382px);
+  margin: 0 auto;
+  transform: scale(0.94);
   transform-origin: top center;
   filter:
     drop-shadow(0 0 8px var(--neon))
@@ -376,7 +379,7 @@ h1 {
   gap: 7px;
   justify-content: center;
   min-height: 44px;
-  margin: 0;
+  margin: -8px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -414,7 +417,7 @@ h1 {
 
 .status {
   min-height: 24px;
-  margin: 5px 0 0;
+  margin: 4px 0 0;
   color: var(--text);
   font-size: clamp(0.9rem, 2.6vw, 1.08rem);
   font-weight: 850;
@@ -522,19 +525,22 @@ h1 {
   }
 
   .stage-panel {
+    grid-template-rows: minmax(0, 1fr) auto auto;
     min-height: 0;
     margin: 0 2px;
+    padding-top: 4px;
   }
 
   .gallows {
-    height: min(29vh, 220px);
-    margin-top: -12px;
-    transform: scale(0.58);
+    width: min(390px, 96%);
+    height: clamp(260px, 38vh, 340px);
+    margin-top: 0;
+    transform: scale(0.78);
     transform-origin: top center;
   }
 
   .word {
-    margin-top: -78px;
+    margin-top: -44px;
   }
 
   .keyboard {
@@ -546,5 +552,84 @@ h1 {
     min-height: 28px;
     border-radius: 7px;
     font-size: 0.76rem;
+  }
+}
+
+@media (max-height: 760px) {
+  .app-shell {
+    padding: 4px 0;
+  }
+
+  .game-console {
+    height: calc(100vh - 8px);
+    padding-top: 6px;
+    padding-bottom: 8px;
+  }
+
+  .console-header {
+    min-height: 58px;
+    padding-top: 4px;
+  }
+
+  .circuit-line {
+    top: 20px;
+    height: 22px;
+  }
+
+  h1 {
+    margin-top: 12px;
+    font-size: clamp(2.15rem, 7.5vw, 3.7rem);
+  }
+
+  .command-row {
+    padding-bottom: 6px;
+  }
+
+  .primary-action {
+    min-height: 32px;
+  }
+
+  .hint {
+    min-height: 32px;
+    padding-block: 4px;
+    font-size: clamp(0.88rem, 3vw, 1.1rem);
+  }
+
+  .stat {
+    min-height: 34px;
+  }
+
+  .stage-panel {
+    padding-top: 2px;
+    padding-bottom: 4px;
+  }
+
+  .gallows {
+    height: clamp(230px, 34vh, 300px);
+    transform: scale(0.72);
+  }
+
+  .word {
+    min-height: 36px;
+    margin-top: -42px;
+  }
+
+  .word li {
+    width: clamp(28px, 5.4vw, 38px);
+  }
+
+  .status {
+    min-height: 20px;
+    font-size: 0.86rem;
+  }
+
+  .keyboard-panel {
+    margin-top: 5px;
+    padding-top: 8px;
+  }
+
+  .letter {
+    min-height: 27px;
+    font-size: 0.74rem;
   }
 }
