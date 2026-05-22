@@ -40,6 +40,7 @@ const elements = {
   hint: document.querySelector("#hint"),
   keyboard: document.querySelector("#keyboard"),
   misses: document.querySelector("#misses"),
+  metaThemeColor: document.querySelector("meta[name='theme-color']"),
   newGame: document.querySelector("[data-action='new-game']"),
   parts: Array.from(document.querySelectorAll(".part")),
   remaining: document.querySelector("#remaining"),
@@ -166,8 +167,8 @@ function renderText() {
   const lettersLeft = ALPHABET.length - state.guessed.size;
 
   elements.hint.textContent = state.hint;
-  elements.misses.textContent = `Misses: ${state.misses} / ${MAX_MISSES}`;
-  elements.remaining.textContent = `${lettersLeft} letters left`;
+  elements.misses.textContent = `${state.misses} / ${MAX_MISSES}`;
+  elements.remaining.textContent = `${lettersLeft} left`;
   elements.status.className = `status ${state.status === "won" ? "win" : ""} ${
     state.status === "lost" ? "loss" : ""
   }`;
@@ -194,7 +195,7 @@ function getPreferredTheme() {
     return storedTheme;
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
+  return window.matchMedia?.("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light";
 }
@@ -218,9 +219,10 @@ function storeTheme(theme) {
 function applyTheme(theme) {
   currentTheme = theme;
   document.documentElement.dataset.theme = theme;
-  document
-    .querySelector("meta[name='theme-color']")
-    .setAttribute("content", theme === "dark" ? "#111827" : "#f7f2e8");
+  elements.metaThemeColor?.setAttribute(
+    "content",
+    theme === "dark" ? "#0d111b" : "#f5f7fb"
+  );
 
   elements.themeButtons.forEach((button) => {
     const isActive = button.dataset.themeOption === theme;
@@ -232,6 +234,10 @@ elements.newGame.addEventListener("click", startGame);
 elements.themeButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const theme = button.dataset.themeOption;
+
+    if (theme !== "light" && theme !== "dark") {
+      return;
+    }
 
     storeTheme(theme);
     applyTheme(theme);

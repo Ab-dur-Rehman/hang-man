@@ -3,11 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#151515" />
+    <meta name="theme-color" content="#f5f7fb" />
     <meta
       name="description"
       content="A responsive Hangman word game with hints, keyboard play, and accessible controls."
     />
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem("hangman-theme");
+          const theme =
+            saved === "light" || saved === "dark"
+              ? saved
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          document.documentElement.dataset.theme = theme;
+        } catch {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
     <link rel="icon" href="./favicon.ico" />
     <link rel="apple-touch-icon" href="./logo192.png" />
     <link rel="manifest" href="./manifest.json" />
@@ -15,14 +31,18 @@
     <title>Hangman</title>
   </head>
   <body>
-    <main class="app" aria-labelledby="app-title">
-      <header class="app-header">
-        <div>
-          <h1 id="app-title">Hangman</h1>
-          <p>Guess the word before the drawing is complete.</p>
+    <main class="app-shell" aria-labelledby="app-title">
+      <header class="topbar">
+        <div class="brand-block">
+          <span class="brand-mark" aria-hidden="true">H</span>
+          <div>
+            <p class="eyebrow">Word game</p>
+            <h1 id="app-title">Hangman</h1>
+          </div>
         </div>
-        <div class="header-actions">
-          <div class="theme-toggle" aria-label="Theme preference">
+
+        <div class="topbar-actions">
+          <div class="theme-switch" aria-label="Theme preference">
             <button
               class="theme-option"
               type="button"
@@ -46,17 +66,35 @@
         </div>
       </header>
 
-      <section class="game-board" aria-label="Hangman game">
-        <div class="word-panel">
-          <p class="eyebrow">Hint</p>
-          <p class="hint" id="hint">Start a new game to reveal a clue.</p>
-          <ul class="word" id="word" aria-label="Current word"></ul>
-          <p class="status" id="status" role="status" aria-live="polite">
-            Ready when you are.
-          </p>
-        </div>
+      <section class="game-layout" aria-label="Hangman game">
+        <aside class="side-panel">
+          <div class="panel-section">
+            <p class="eyebrow">Clue</p>
+            <p class="hint" id="hint">Start a new game to reveal a clue.</p>
+          </div>
 
-        <div class="play-area">
+          <div class="status-card">
+            <p class="eyebrow">Round status</p>
+            <p class="status" id="status" role="status" aria-live="polite">
+              Ready when you are.
+            </p>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat">
+              <span class="stat-label">Misses</span>
+              <strong id="misses">0 / 7</strong>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Letters</span>
+              <strong id="remaining">26 left</strong>
+            </div>
+          </div>
+        </aside>
+
+        <section class="stage-panel" aria-label="Word and drawing">
+          <ul class="word" id="word" aria-label="Current word"></ul>
+
           <figure class="gallows" aria-label="Hangman drawing">
             <div class="stand-base"></div>
             <div class="stand-post"></div>
@@ -69,15 +107,17 @@
             <div class="leg leg-left part" data-part="5"></div>
             <div class="leg leg-right part" data-part="6"></div>
           </figure>
+        </section>
 
-          <section class="controls" aria-label="Letter choices">
-            <div class="score-row">
-              <span id="misses">Misses: 0 / 7</span>
-              <span id="remaining">26 letters left</span>
+        <section class="keyboard-panel" aria-label="Letter choices">
+          <div class="keyboard-header">
+            <div>
+              <p class="eyebrow">Keyboard</p>
+              <h2>Pick a letter</h2>
             </div>
-            <div class="keyboard" id="keyboard"></div>
-          </section>
-        </div>
+          </div>
+          <div class="keyboard" id="keyboard"></div>
+        </section>
       </section>
     </main>
 
