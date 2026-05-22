@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f5f7fb" />
+    <meta name="theme-color" content="#101820" />
     <meta
       name="description"
       content="A responsive Hangman word game with hints, keyboard play, and accessible controls."
@@ -20,7 +20,7 @@
                 : "light";
           document.documentElement.dataset.theme = theme;
         } catch {
-          document.documentElement.dataset.theme = "light";
+          document.documentElement.dataset.theme = "dark";
         }
       })();
     </script>
@@ -32,69 +32,67 @@
   </head>
   <body>
     <main class="app-shell" aria-labelledby="app-title">
-      <header class="topbar">
-        <div class="brand-block">
-          <span class="brand-mark" aria-hidden="true">H</span>
-          <div>
-            <p class="eyebrow">Word game</p>
-            <h1 id="app-title">Hangman</h1>
-          </div>
-        </div>
+      <section class="game-console" aria-label="Hangman game">
+        <header class="console-header">
+          <div class="circuit-line" aria-hidden="true"></div>
+          <p class="brand-mark">H</p>
+          <p class="eyebrow">Word Game</p>
+          <h1 id="app-title">Hangman</h1>
+        </header>
 
-        <div class="topbar-actions">
-          <div class="theme-switch" aria-label="Theme preference">
-            <button
-              class="theme-option"
-              type="button"
-              data-theme-option="light"
-              aria-pressed="true"
-            >
-              Light
-            </button>
-            <button
-              class="theme-option"
-              type="button"
-              data-theme-option="dark"
-              aria-pressed="false"
-            >
-              Dark
-            </button>
+        <section class="command-row" aria-label="Game controls">
+          <div class="theme-module">
+            <span>Light</span>
+            <div class="theme-switch" aria-label="Theme preference">
+              <button
+                class="theme-option"
+                type="button"
+                data-theme-option="light"
+                aria-pressed="false"
+              >
+                Light
+              </button>
+              <button
+                class="theme-option"
+                type="button"
+                data-theme-option="dark"
+                aria-pressed="true"
+              >
+                Dark
+              </button>
+            </div>
+            <span>Dark</span>
           </div>
+
           <button class="primary-action" type="button" data-action="new-game">
-            New Game
+            <span>New</span>
+            <span>Game</span>
           </button>
-        </div>
-      </header>
 
-      <section class="game-layout" aria-label="Hangman game">
-        <aside class="side-panel">
-          <div class="panel-section">
-            <p class="eyebrow">Clue</p>
-            <p class="hint" id="hint">Start a new game to reveal a clue.</p>
+          <div class="theme-module mirror">
+            <span>Light</span>
+            <div class="theme-switch compact" aria-hidden="true">
+              <span class="toggle-track"></span>
+            </div>
+            <span>Dark</span>
           </div>
+        </section>
 
-          <div class="status-card">
-            <p class="eyebrow">Round status</p>
-            <p class="status" id="status" role="status" aria-live="polite">
-              Ready when you are.
-            </p>
-          </div>
-
+        <section class="readout-panel">
+          <p class="hint" id="hint">Start a new game to reveal a clue.</p>
           <div class="stat-grid">
             <div class="stat">
-              <span class="stat-label">Misses</span>
+              <span class="stat-label">Current Misses:</span>
               <strong id="misses">0 / 7</strong>
             </div>
             <div class="stat">
-              <span class="stat-label">Letters</span>
-              <strong id="remaining">26 left</strong>
+              <span class="stat-label">Remaining Letters:</span>
+              <strong id="remaining">26</strong>
             </div>
           </div>
-        </aside>
+        </section>
 
         <section class="stage-panel" aria-label="Word and drawing">
-          <ul class="word" id="word" aria-label="Current word"></ul>
-
           <figure class="gallows" aria-label="Hangman drawing">
             <div class="stand-base"></div>
             <div class="stand-post"></div>
@@ -107,15 +105,14 @@
             <div class="leg leg-left part" data-part="5"></div>
             <div class="leg leg-right part" data-part="6"></div>
           </figure>
+
+          <ul class="word" id="word" aria-label="Current word"></ul>
+          <p class="status" id="status" role="status" aria-live="polite">
+            Ready when you are.
+          </p>
         </section>
 
         <section class="keyboard-panel" aria-label="Letter choices">
-          <div class="keyboard-header">
-            <div>
-              <p class="eyebrow">Keyboard</p>
-              <h2>Pick a letter</h2>
-            </div>
-          </div>
           <div class="keyboard" id="keyboard"></div>
         </section>
       </section>

@@ -168,7 +168,7 @@ function renderText() {
 
   elements.hint.textContent = state.hint;
   elements.misses.textContent = `${state.misses} / ${MAX_MISSES}`;
-  elements.remaining.textContent = `${lettersLeft} left`;
+  elements.remaining.textContent = `${lettersLeft}`;
   elements.status.className = `status ${state.status === "won" ? "win" : ""} ${
     state.status === "lost" ? "loss" : ""
   }`;
